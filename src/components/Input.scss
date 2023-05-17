@@ -1,0 +1,20 @@
+#input {
+  height: 50%;
+  display: grid;
+  *{
+    margin-top: 5px;
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
+  #con-bttn {
+    justify-self: center;
+    background-color: rgb(31, 118, 195);
+    border-color: rgb(30, 125, 208);
+    &:hover {
+      transform: scale(1.1);
+      background-color: rgb(9, 85, 151);
+      border-color: rgb(9, 85, 151);
+    }
+  }
+}
