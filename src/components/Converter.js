@@ -5,12 +5,12 @@ import "./Converter.scss";
 
 //Renders the input form and conditionally renders error message and result card
 export default function Converter(props) {
-  const { state, findData } = useApplicationData();
+  const { state, findData, setState } = useApplicationData();
 
   return (
     <div id="con">
       {state.errMes && <div id="err">{state.errMes}</div>}
-      <Input findData={findData} countries={state.countries}/>
+      <Input state={state} setState={setState} findData={findData} countries={state.countries}/>
       <br/>
       {state.conversion && <ShowConvert amount={state.amount} conversion={state.conversion} to={state.to} from={state.from} rate={state.rate}/>}
     </div>

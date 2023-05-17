@@ -70,15 +70,15 @@ export default function useApplicationData(){
         })
       })
       .catch((error) => {
-        return console.log(error);
+        console.log(error);
+        return setState({...state, errMes: "Something went wrong"})
       })
-    } else {
-      return setState({...state, errMes: "Please enter valid input for all required values"})
     }
   }
   
   return {
     state,
+    setState,
     findData
   }
 }

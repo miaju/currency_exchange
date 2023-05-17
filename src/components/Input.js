@@ -8,8 +8,15 @@ import Col from 'react-bootstrap/Col';
 import "./Input.scss";
 
 //form for the user to choose countries to convert curency to and from as well as the amount
-export default function Input(props) {
-  const [state, setState] = useState({});
+export default function Input({state, setState, findData, countries}) {
+
+  function handleSubmit() {
+    if (state.to && state.from && (state.amount > 0)) {
+      findData(state.from, state.to, state.amount)
+    } else {
+      setState({...state, errMes: "Please enter valid input for all required values"})
+    }
+  }
 
   return (
     <Form id='input'>
@@ -20,7 +27,7 @@ export default function Input(props) {
           label="Currency I Have: "
         >
           <Form.Select onChange={(e) => setState({...state, from: e.target.value})}>
-            {props.countries?.map((country) => {
+            {countries?.map((country) => {
               const code = Object.keys(country.currencies)[0];
               return <option key={country.name.common} value={country.name.common}>{country.name.common} ({code})</option>
             })}
@@ -33,7 +40,7 @@ export default function Input(props) {
         label="Currency I Want: "
       >
           <Form.Select onChange={(e) => setState({...state, to: e.target.value})}>
-            {props.countries?.map((country) => {
+            {countries?.map((country) => {
               const code = Object.keys(country.currencies)[0];
                 return <option key={country.name.common} value={country.name.common}>{country.name.common} ({code})</option>
               })}
@@ -51,7 +58,7 @@ export default function Input(props) {
         </FloatingLabel>
       </Col>
       </Row>
-      {<Button id="con-bttn" onClick={() => props.findData(state.from, state.to, state.amount)}>Convert Currency</Button>}
+      <Button id="con-bttn" onClick={handleSubmit}>Convert Currency</Button>
     </Form>
   )
 }

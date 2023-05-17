@@ -7,7 +7,7 @@ export default function ShowConvert({conversion, to, from, amount, rate}) {
   return (
     <Card id="result">
       <Card.Body>
-        {`${from.symbol}${amount} (${from.code}) is ${to.symbol}${conversion.toFixed(2)} (${to.code}) at a conversion rate of ${rate}`}
+        {`${from.symbol}${(amount * 100 / 100).toFixed(2)} (${from.code}) is ${to.symbol}${conversion.toFixed(2)} (${to.code}) at a conversion rate of ${rate}`}
       </Card.Body>
     </Card>
   )
