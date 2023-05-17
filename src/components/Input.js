@@ -12,15 +12,16 @@ import "./Input.scss";
 export default function Input({state, setError, findData, countries, setCountries, setAmount}) {
 
   function handleSubmit() {
-    if (state.to && state.from && (state.amount > 0)) {
-      findData(state.from, state.to, state.amount)
+    console.log(state)
+    if (state.to_name && state.from_name && (state.amount > 0)) {
+      findData(state.from_name, state.to_name, state.amount)
     } else {
       setError();
     }
   }
 
   function swap() {
-
+    findData(state.to_name, state.from_name, state.amount);
   }
 
   return (
@@ -31,7 +32,7 @@ export default function Input({state, setError, findData, countries, setCountrie
           controlId="floatingInput"
           label="Currency I Have: "
         >
-          <Form.Select onChange={(e) => setCountries("from",e.target.value)}>
+          <Form.Select value={state.from_name} onChange={(e) => setCountries("from_name",e.target.value)}>
             {countries?.map((country) => {
               const code = Object.keys(country.currencies)[0];
               return <option key={country.name.common} value={country.name.common}>{country.name.common} ({code})</option>
@@ -39,12 +40,15 @@ export default function Input({state, setError, findData, countries, setCountrie
           </Form.Select>
         </FloatingLabel>
         </Col>
+        <Col xs="auto">
+        <Button id="swap" onClick={swap}><FontAwesomeIcon icon={faRightLeft} /></Button>
+        </Col>
         <Col>
         <FloatingLabel
         controlId="floatingInput"
         label="Currency I Want: "
       >
-          <Form.Select onChange={(e) => setCountries("to",e.target.value)}>
+          <Form.Select value={state.to_name} onChange={(e) => setCountries("to_name",e.target.value)}>
             {countries?.map((country) => {
               const code = Object.keys(country.currencies)[0];
                 return <option key={country.name.common} value={country.name.common}>{country.name.common} ({code})</option>

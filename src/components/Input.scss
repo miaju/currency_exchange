@@ -1,5 +1,5 @@
 #input {
-  height: 50%;
+  height: 70%;
   display: grid;
   *{
     margin-top: 5px;
@@ -7,7 +7,7 @@
       transform: scale(1.01);
     }
   }
-  #con-bttn {
+  .btn {
     justify-self: center;
     background-color: rgb(31, 118, 195);
     border-color: rgb(30, 125, 208);
@@ -16,5 +16,20 @@
       background-color: rgb(9, 85, 151);
       border-color: rgb(9, 85, 151);
     }
+    svg{
+      margin: 0;
+    }
+  }
+
+  #swap {
+    height: 50%;
+  }
+
+  .row {
+    * {
+      display: grid;
+      align-items: center;
+    }
+    
   }
 }

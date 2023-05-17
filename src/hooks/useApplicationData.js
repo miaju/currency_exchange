@@ -59,13 +59,13 @@ export default function useApplicationData(){
   }
 
   //gets all the data using the above functions
-  function findData(from, to, amount){
-    if (from && to && amount) {
-      return getCurrency(to).then((to) => {
-        return getCurrency(from).then((from) => {
+  function findData(from_name, to_name, amount){
+    if (from_name && to_name && amount) {
+      return getCurrency(to_name).then((to) => {
+        return getCurrency(from_name).then((from) => {
           return getRate(from.code, to.code).then((rate) => {
             const conversion = convert(amount, rate);
-            return setState({...state, to, from, conversion, rate, amount,errMes: null})
+            return setState({...state, to, from, to_name, from_name,conversion, rate, amount,errMes: null})
           });
         })
       })
@@ -82,11 +82,22 @@ export default function useApplicationData(){
 
   function setCountries(direction, country) {
     if (direction === "to") {
+      console.log(state);
       return setState({...state, to: country});
     }
     if (direction === "from") {
+      console.log(state);
       return setState({...state, from: country});
     }
+    if (direction === "from_name") {
+      console.log(state);
+      return setState({...state, from_name: country});
+    }
+    if (direction === "to_name") {
+      console.log(state);
+      return setState({...state, to_name: country});
+    }
+    
   }
 
   function setAmount(amount) {
