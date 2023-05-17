@@ -75,10 +75,29 @@ export default function useApplicationData(){
       })
     }
   }
+
+  function setError() {
+    return setState({...state, errMes: "Please enter valid input for all required values"})
+  }
+
+  function setCountries(direction, country) {
+    if (direction === "to") {
+      return setState({...state, to: country});
+    }
+    if (direction === "from") {
+      return setState({...state, from: country});
+    }
+  }
+
+  function setAmount(amount) {
+    return setState({...state, amount})
+  }
   
   return {
     state,
-    setState,
-    findData
+    setCountries,
+    findData,
+    setError,
+    setAmount
   }
 }
